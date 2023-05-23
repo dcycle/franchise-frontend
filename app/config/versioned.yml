@@ -12,14 +12,19 @@ modules:
       - route: tokenRequest
         verb: get
     anonymous:
+      - route: home
+        verb: get
+      - route: homeFranchise
+        verb: get
       - route: tokenCheck
         verb: get
       - route: rest
         verb: get
   ./rest/index.js:
     path: '/api/v1'
-  ./chatWeb/index.js:
+  ./home/index.js:
     path: '/'
+    internal: '/:franchiseId'
   ./userPassAuth/index.js: {}
   # This can be overridden in unversioned.yml, as per the example in
   # ./app/config/unversioned.example.yml.
