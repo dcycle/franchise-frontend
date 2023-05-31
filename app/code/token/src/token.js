@@ -9,6 +9,7 @@ class Token {
     throw 'Please override';
   }
 
+
 }
 
 // $FlowExpectedError

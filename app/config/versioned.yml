@@ -22,6 +22,8 @@ modules:
         verb: get
   ./rest/index.js:
     path: '/api/v1'
+  ./contentHub/index.js:
+    url: 'https://content.lecatering.dcycleproject.org'
   ./home/index.js:
     path: '/'
     internal: '/:franchiseId'

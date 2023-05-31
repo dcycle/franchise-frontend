@@ -15,6 +15,8 @@ modules:
     client: 'client_id'
     secret: 'secret'
     baseUrl: 'https://www.staticauth.com'
+  ./home/index.js:
+    googleMapsApiKey: APIKEYFORGOOGLEMAPS_RESTRICTED_BY_URL
   ./smtp/index.js:
     servers:
       myServer:

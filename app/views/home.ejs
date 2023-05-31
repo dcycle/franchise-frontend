@@ -28,18 +28,49 @@ h1, h2, h3, h4, h5, h6 {
   </div>
 </div>
 
-<!-- Header -->
-<header class="w3-display-container w3-content w3-wide" style="max-width:1600px;min-width:500px" id="home">
-  <img class="w3-image" src="/w3images/hamburger.jpg" alt="Hamburger Catering" width="1600" height="800">
-  <div class="w3-display-bottomleft w3-padding-large w3-opacity">
-    <h1 class="w3-xxlarge">Le Catering</h1>
-  </div>
-</header>
+<div id='map' style="width:100%; height:600px"></div>
+<script type='text/javascript'>
+    function initMap() {
+        maps = new google.maps.Map(document.getElementById('map'), {
+            center: new google.maps.LatLng(47.116386, -101.299591),
+            zoom: 3,
+            disableDefaultUI: false,
+        });
+        var labels='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        var markerImage = 'map-marker-2-32.png';
+        marker = locations.map(function (location, i) {
+            return new google.maps.Marker({
+                position: new google.maps.LatLng(location.lat, location.lng),
+                map: maps,
+                title: "Map",
+                label: labels[i % labels.length],
+                icon: markerImage
+            });
+        });
+
+        var markerCluster = new MarkerClusterer(maps, marker, {
+            imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
+        });
+    }
+    var locations = [
+      <% for(var i=0; i<allFranchises.length; i++) { %>
+            { lat: <%=allFranchises[i].lat %>, lng: <%=allFranchises[i].lon %>},
+      <% } %>
+        ];
+
+</script>
+<script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js">
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%=googleMapsKey%>&callback=initMap">
+</script>
+<script type='text/javascript'></script>
 
 <!-- Page content -->
 <div class="w3-content" style="max-width:1100px">
 
   <!-- About Section -->
+  <h1 class="w3-xxlarge">Le Catering</h1>
+
   <div class="w3-row w3-padding-64" id="about">
     <div class="w3-col m6 w3-padding-large w3-hide-small">
      <img src="/w3images/tablesetting2.jpg" class="w3-round w3-image w3-opacity-min" alt="Table Setting" width="600" height="750">
